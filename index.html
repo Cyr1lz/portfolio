@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Replica</title>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f9dcd9;
+      --frame: #ffd0c8;
+      --panel: #fff2f2;
+      --muted: #e6bab3;
+      --text: #2b2322;
+      --card-radius: 20px;
+      --gap: 20px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.12);
+      --glass: rgba(255,255,255,0.6);
+    }
+
+    body {
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      background: var(--bg);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .browser-frame {
+      width:100%;
+      max-width:1200px;
+      border-radius:28px;
+      background: linear-gradient(180deg,var(--frame), var(--muted));
+      padding:24px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .label-top-right {
+      position:absolute;
+      right:22px;
+      top:18px;
+      font-weight:700;
+      opacity:0.7;
+      font-family:"Dancing Script", cursive;
+      font-size:18px;
+    }
+
+    .page {
+      background: var(--panel);
+      border-radius:18px;
+      padding:22px;
+    }
+
+    /* Navigation */
+    .topbar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .brand { font-weight:600; font-size:clamp(1.2rem,2vw,1.5rem); }
+    .nav { display:flex; gap:18px; flex-wrap:wrap; }
+    .nav a { text-decoration:none; color:var(--text); font-weight:500; }
+
+    /* Grid layout */
+    .grid {
+      display:grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.03));
+      border-radius: var(--card-radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.18); }
+
+    .hero h1 { font-size:clamp(1.6rem,2.5vw,2.2rem); margin:0; }
+    .hero h1 span { display:block; font-weight:300; color:#666; font-size:clamp(1rem,1.6vw,1.2rem); }
+
+    .profile-card {
+      width:100%;
+      height:100%;
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .profile-card img { width:100%; height:100%; object-fit:cover; }
+
+    .project-thumb img {
+      width:100%; height:140px; object-fit:cover; border-radius:12px;
+    }
+
+    .small-cards {
+      grid-column:1 / -1;
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap:var(--gap);
+    }
+
+    /* Responsive */
+    @media (max-width:992px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width:600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* Brown theme */
+    .theme-brown {
+      --bg:#d8cdc6;
+      --frame:#3c2f28;
+      --panel:#3b2f28;
+      --muted:#8e7a6f;
+      --text:#fff;
+    }
+
+    /* Theme buttons */
+    .controls {
+      position:absolute;
+      left:20px;
+      bottom:20px;
+      display:flex;
+      gap:10px;
+    }
+    .btn {
+      padding:8px 12px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+      font-weight:600;
+      color:var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="browser-frame" id="browserFrame">
+    <div class="label-top-right">BLACKPINK · JUMP</div>
+    <div class="page">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="brand">JULIA HUANG</div>
+        <nav class="nav">
+          <a href="#">PROJECTS</a>
+          <a href="#">ABOUT</a>
+          <a href="#">CONTACT</a>
+        </nav>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid">
+        <!-- Hero -->
+        <div class="card hero">
+          <h1>Artist Redefining <span>Architecture with AI-Driven Design</span></h1>
+          <p>Julia Huang is an innovative AI artist, blending generative tools with hand craft.</p>
+        </div>
+
+        <!-- Profile -->
+        <div class="card profile-card">
+          <img src="images/profile.jpg" alt="Profile">
+        </div>
+
+        <!-- Project -->
+        <div class="card">
+          <h3>Musea ↗</h3>
+          <div class="project-thumb"><img src="images/project1.jpg" alt="Project"></div>
+          <p style="opacity:.7;font-size:14px;">Elara — a soft-sculpture landscape</p>
+        </div>
+
+        <!-- Small cards row -->
+        <div class="small-cards">
+          <div class="card">Have some questions?</div>
+          <div class="card">Instagram</div>
+          <div class="card">More Work</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn" id="themeLight">Peach</button>
+      <button class="btn" id="themeBrown">Brown</button>
+    </div>
+  </div>
+
+<script>
+  const lightBtn = document.getElementById('themeLight');
+  const brownBtn = document.getElementById('themeBrown');
+  const root = document.documentElement;
+
+  lightBtn.addEventListener('click', ()=>{
+    root.classList.remove('theme-brown');
+  });
+  brownBtn.addEventListener('click', ()=>{
+    root.classList.add('theme-brown');
+  });
+
+  // Fade-in animation
+  window.addEventListener('load', ()=>{
+    document.querySelectorAll('.card').forEach((c,i)=>{
+      c.style.opacity=0;
+      c.style.transform="translateY(12px)";
+      setTimeout(()=>{
+        c.style.transition="opacity .6s ease, transform .6s ease";
+        c.style.opacity=1;
+        c.style.transform="translateY(0)";
+      }, 150 + i*120);
+    });
+  });
+</script>
+</body>
+</html>
